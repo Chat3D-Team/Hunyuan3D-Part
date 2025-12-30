@@ -1,3 +1,10 @@
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+uv venv --python 3.10
+source .venv/bin/activate
+
+
 uv pip install torch==2.4.0 torchvision==0.19.0 --index-url https://download.pytorch.org/whl/cu121
 
 
@@ -12,7 +19,8 @@ uv pip install git+https://github.com/Dao-AILab/flash-attention.git --no-build-i
 uv pip install huggingface_hub timm
 
 # (optional, or directly copy the sonata folder to your project)
-uv run python setup.py install
+# uv run python setup.py install
+uv pip install . --no-build-isolation
 
 
 cd ..
@@ -29,6 +37,11 @@ uv pip install . --no-build-isolation
 cd ../..
 
 uv pip install scikit-learn addict omegaconf
+
+
+
+# cd demo
+# uv run python auto_mask.py  --mesh_path assets/1.glb --output_path results/1
 
 # export HF_HOME="/home/ubuntu/.cache/huggingface"
 # Dans model.py
