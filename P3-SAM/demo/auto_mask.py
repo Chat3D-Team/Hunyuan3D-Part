@@ -778,6 +778,9 @@ def mesh_sam(
 
     point_num = 100000
     prompt_num = 400
+    
+    prompt_bs = 2 * 4
+    
     with Timer("获取邻接面片"):
         face_adjacency = mesh.face_adjacency
     with Timer("处理邻接面片"):
@@ -827,6 +830,7 @@ def mesh_sam(
 
     with Timer("推理"):
         bs = prompt_bs
+        print("prompt batch size:", bs, point_num, prompt_num)
         step_num = prompt_num // bs + 1
         mask_res = []
         iou_res = []
